@@ -7,13 +7,15 @@
 
 // export default apiRequest;
 
+
+
 import axios from "axios";
 
-// Set the baseURL depending on the environment (development or production)
 const apiRequest = axios.create({
-  baseURL: process.env.NODE_ENV === "production" 
-    ? "https://campus-connect-api-zeta.vercel.app/api"  // Production backend URL
-    : "http://localhost:8800/api",  // Local backend URL for development
+  baseURL:
+    window.location.hostname === "localhost"
+      ? "http://localhost:8800/api"
+      : "https://campus-connect-api-zeta.vercel.app/api",
   withCredentials: true,
 });
 

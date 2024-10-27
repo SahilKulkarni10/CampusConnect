@@ -1,3 +1,5 @@
+
+
 // import { Server } from "socket.io";
 
 // const io = new Server({
@@ -6,21 +8,21 @@
 //   },
 // });
 
-// let onlineUser = [];
+// let onlineUsers = [];
 
 // const addUser = (userId, socketId) => {
-//   const userExits = onlineUser.find((user) => user.userId === userId);
-//   if (!userExits) {
-//     onlineUser.push({ userId, socketId });
+//   const userExists = onlineUsers.some((user) => user.userId === userId);
+//   if (!userExists) {
+//     onlineUsers.push({ userId, socketId });
 //   }
 // };
 
 // const removeUser = (socketId) => {
-//   onlineUser = onlineUser.filter((user) => user.socketId !== socketId);
+//   onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
 // };
 
 // const getUser = (userId) => {
-//   return onlineUser.find((user) => user.userId === userId);
+//   return onlineUsers.find((user) => user.userId === userId);
 // };
 
 // io.on("connection", (socket) => {
@@ -30,7 +32,11 @@
 
 //   socket.on("sendMessage", ({ receiverId, data }) => {
 //     const receiver = getUser(receiverId);
-//     io.to(receiver.socketId).emit("getMessage", data);
+//     if (receiver) {
+//       io.to(receiver.socketId).emit("getMessage", data);
+//     } else {
+//       console.log(`User ${receiverId} not found.`);
+//     }
 //   });
 
 //   socket.on("disconnect", () => {
@@ -38,15 +44,17 @@
 //   });
 // });
 
-// io.listen("4000");
-
+// io.listen(4000);
 
 
 import { Server } from "socket.io";
 
 const io = new Server({
   cors: {
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://campus-connect-client-beige.vercel.app",
+    ],
   },
 });
 
