@@ -53,7 +53,7 @@ const io = new Server({
   cors: {
     origin: [
       "http://localhost:5173",
-      "https://campus-connect-client-beige.vercel.app",
+      "https://campus-connect-client-alpha.vercel.app",
     ],
   },
 });
